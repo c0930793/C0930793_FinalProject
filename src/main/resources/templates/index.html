@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Catalogue</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .movie { margin-bottom: 15px; }
+        a { text-decoration: none; color: blue; }
+        .poster { width: 100px; vertical-align: middle; margin-right: 10px; }
+    </style>
+</head>
+<body>
+<h1>🎮 Trending Movies</h1>
+<div th:each="movie : ${movies}" class="movie">
+    <img th:src="'https://image.tmdb.org/t/p/w200' + ${movie.poster_path}" class="poster"/>
+    <a th:href="@{/movie/{id}(id=${movie.id})}" th:text="${movie.title}"></a>
+</div>
+<p><a href="/favorites">❤️ View Favorites</a></p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Favorite Movies</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .movie { margin-bottom: 15px; }
+        .poster { width: 100px; vertical-align: middle; margin-right: 10px; }
+    </style>
+</head>
+<body>
+<h1>❤️ Favorite Movies</h1>
+<div th:if="${#lists.isEmpty(movies)}">
+    <p>No favorites yet.</p>
+</div>
+<div th:each="movie : ${movies}" class="movie">
+    <img th:src="'https://image.tmdb.org/t/p/w200' + ${movie.posterPath}" class="poster"/>
+    <strong th:text="${movie.title}"></strong>
+    <form method="post" th:action="@{/favorite/remove/{id}(id=${movie.id})}" style="display:inline;">
+        <button type="submit">❌ Remove</button>
+    </form>
+</div>
+<p><a href="/">⬅ Back to list</a></p>
+</body>
+</html>
